@@ -1,11 +1,24 @@
+import List from "./components/List";
+import React from "react";
 
-import './App.css';
+
 
 function App() {
+ 
   return (
-    <div className="App">
-     
-    </div>
+    <main>
+      <section className="container">
+        <h3>Employee List</h3>
+        <h5>
+          (Employees 1 to 5)
+        </h5>
+        <List />
+        <div className='btns'>
+          <button >Prev</button>
+          <button >Next</button>
+        </div>
+      </section>
+    </main>
   );
 }
 
