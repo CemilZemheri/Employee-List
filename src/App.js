@@ -1,24 +1,36 @@
-import List from "./components/List";
 import React from "react";
-
-
+import data from "./helper/data";
+import List from "./components/List";
+import { useState } from "react";
 
 function App() {
- 
+  const [startIndex, setStartIndex] = useState(0);
+  const prevPage = () => {
+    setStartIndex((startIndex) => Math.max(startIndex - 5, 0));
+  };
+  const nextPage = () => {
+    if (startIndex <= 14) {
+      setStartIndex((startIndex) => Math.min(startIndex + 5, data.length - 1));
+    }
+  };
+
   return (
-    <main>
-      <section className="container">
-        <h3>Employee List</h3>
-        <h5>
-          (Employees 1 to 5)
-        </h5>
-        <List />
-        <div className='btns'>
-          <button >Prev</button>
-          <button >Next</button>
+   
+      <div className="container">
+        <div className="main">
+          <h3>EMPLOYEE LIST</h3>
+          <h5>
+            <span>(Employee {startIndex + 1}</span> to{" "}
+            <span> {startIndex + 5}</span>)
+          </h5>
         </div>
-      </section>
-    </main>
+        <List data={data} startIndex={startIndex} />
+        <div className="btns">
+          <button onClick={prevPage}>Previous</button>
+          <button onClick={nextPage}>Next</button>
+        </div>
+      </div>
+    
   );
 }
 
